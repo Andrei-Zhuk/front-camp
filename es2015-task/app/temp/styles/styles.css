@@ -1,1 +1,7 @@
+.sourceList {
+    display: none;
+}
 
+.sourceList.sourceListVisible {
+    display: block;
+}

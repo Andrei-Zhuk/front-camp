@@ -1,10 +1,7 @@
 import displaySources from './modules/displaySources';
+import {API_KEY, SERVER, TYPE_SOURCES, sources} from './base/variables';
 
-const API_KEY = "cc9811e8c45e4304bca8110b265a30fb";
-const SERVER = "https://newsapi.org/v2/sources?";
-let sources = {};
-
-fetch(`${SERVER}apiKey=${API_KEY}`)
+fetch(`${SERVER}${TYPE_SOURCES}apiKey=${API_KEY}`)
     .then(response => response.json())
     .then(data => {
         data.sources.forEach(source => {
@@ -18,4 +15,5 @@ fetch(`${SERVER}apiKey=${API_KEY}`)
         })
         console.log(sources);
         displaySources(sources)
+        console.log(sources);
     })
