@@ -15,7 +15,7 @@ export default function displaySources(sources) {
         let sourceList = document.createElement('ul');
         sourceList.classList.add("sourceList");
 
-        for (var i = 0; i < sources[category].content.length; i++) {
+        for (let i = 0; i < sources[category].content.length; i++) {
             let source = document.createElement('li');
             let sourceTitle = document.createElement('a');
             sourceTitle.href = '#';
@@ -46,5 +46,6 @@ function handleSourceClick(e) {
         .then(data => {
             articles.content = data.articles;
             displayArticles(articles);
+            console.log(articles);
         })
 }
