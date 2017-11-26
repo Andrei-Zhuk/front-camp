@@ -30,11 +30,11 @@ export default class Article {
     }
 
     makePublishedTime() {
-        let articleAuthor = document.createElement('span');
+        let articleTime = document.createElement('span');
         let time = new Date(this.data.publishedAt);
-        articleAuthor.innerText = `${time.getHours()}:${time.getMinutes()} ${time.getDate()}.${time.getMonth() + 1}.${time.getFullYear()}`;
-        articleAuthor.classList.add("articleAuthor");
-        return articleAuthor
+        articleTime.innerText = `Published at ${time.getHours() < 10 ? '0' + time.getHours() : time.getHours()}:${time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes()} ${time.getDate() < 10 ? '0' + time.getDate() : time.getDate()}.${time.getMonth() + 1 < 10 ? '0' + time.getMonth() + 1 : time.getMonth() + 1}.${time.getFullYear()}`;
+        articleTime.classList.add("articleTime");
+        return articleTime
     }
 
     makeDescription() {

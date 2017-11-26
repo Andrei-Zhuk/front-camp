@@ -6,6 +6,7 @@ export default function displaySources(sources) {
 
     for (var category in sources) {
         let categoryContainer = document.createElement('div');
+        categoryContainer.classList.add("categoryContainer")
         let categoryTitle = document.createElement('a');
         categoryTitle.href = '#';
         categoryTitle.textContent = sources[category].title;
@@ -17,10 +18,12 @@ export default function displaySources(sources) {
 
         for (let i = 0; i < sources[category].content.length; i++) {
             let source = document.createElement('li');
+            source.classList.add("source")
             let sourceTitle = document.createElement('a');
             sourceTitle.href = '#';
             sourceTitle.textContent = sources[category].content[i].name;
-            sourceTitle.id = sources[category].content[i].id
+            sourceTitle.id = sources[category].content[i].id;
+            sourceTitle.classList.add("sourceTitle")
             sourceTitle.addEventListener('click', handleSourceClick)
 
             source.appendChild(sourceTitle);

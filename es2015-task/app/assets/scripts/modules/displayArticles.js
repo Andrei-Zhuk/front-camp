@@ -9,6 +9,7 @@ export default function displayArticles(articles) {
     }
 
     let articleList = document.createElement('ul');
+    articleList.classList.add("articleList")
 
     for (let i = 0; i < articles.content.length; i++) {
         let article = new Article(articles.content[i]);

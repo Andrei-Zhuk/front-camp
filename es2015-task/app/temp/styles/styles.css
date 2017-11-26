@@ -1,7 +1,6 @@
-.sourceList {
-    display: none;
-}
+@import "./modules/_sources.css";
+@import "./modules/_articles.css";
 
-.sourceList.sourceListVisible {
-    display: block;
+a {
+    text-decoration: none;
 }
