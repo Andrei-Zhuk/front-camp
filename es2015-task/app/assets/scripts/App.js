@@ -13,7 +13,5 @@ fetch(`${SERVER}${TYPE_SOURCES}apiKey=${API_KEY}`)
             };
             sources[source.category].content.push(source)
         })
-        console.log(sources);
-        displaySources(sources)
-        console.log(sources);
+        displaySources(sources);
     })

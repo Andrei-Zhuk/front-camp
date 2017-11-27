@@ -4,7 +4,7 @@ import displayArticles from "./displayArticles";
 export default function displaySources(sources) {
     let container = document.getElementById('sources-container');
 
-    for (var category in sources) {
+    for (let category in sources) {
         let categoryContainer = document.createElement('div');
         categoryContainer.classList.add("categoryContainer")
         let categoryTitle = document.createElement('a');
@@ -38,7 +38,6 @@ export default function displaySources(sources) {
 }
 
 function handleCategoryClick(e) {
-    console.log(e);
     sources[e.target.id].list.classList.toggle("sourceListVisible");
 }
 
@@ -49,6 +48,5 @@ function handleSourceClick(e) {
         .then(data => {
             articles.content = data.articles;
             displayArticles(articles);
-            console.log(articles);
         })
 }
