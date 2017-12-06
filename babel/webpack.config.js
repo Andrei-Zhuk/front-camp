@@ -1,22 +1,20 @@
 module.exports = {
   entry: {
-    App: "./app/assets/scripts/App.js"
+    App: __dirname + "/app/assets/scripts/App.js"
   },
   output: {
-    path: "./app/temp/scripts",
+    path: __dirname + "/app/temp/scripts",
     filename: "[name].js"
   },
   module: {
-    loaders: [
-      {
-        loader: 'babel',
-        query: {
-          presets: ['es2015']
-        },
-        test: /\.js$/,
-        exclude: /node_modules/
-      }
+    rules: [
+        {
+         test: /\.js$/,
+         exclude: /(node_modules|bower_components)/,
+         use: {
+           loader: 'babel-loader'
+         }
+       }
     ]
-    },
-    devtool: 'cheap-module-eval-source-map'
+  }
 }

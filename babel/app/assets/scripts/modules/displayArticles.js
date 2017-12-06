@@ -3,6 +3,7 @@ import Article from "./Article";
 
 export default function displayArticles(articles) {
     let container = document.getElementById('articles-container');
+    let babel_a = 4;
 
     if (container.children.length !== 0) {
         container.removeChild(container.children[0]);

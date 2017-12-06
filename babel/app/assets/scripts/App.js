@@ -1,5 +1,8 @@
 import displaySources from './modules/displaySources';
 import {API_KEY, SERVER, TYPE_SOURCES, sources} from './base/variables';
+import 'whatwg-fetch';
+
+let babel_a = 4;
 
 fetch(`${SERVER}${TYPE_SOURCES}apiKey=${API_KEY}`)
     .then(response => response.json())
@@ -14,4 +17,5 @@ fetch(`${SERVER}${TYPE_SOURCES}apiKey=${API_KEY}`)
             sources[source.category].content.push(source)
         })
         displaySources(sources);
+        console.log(babel_a);
     })

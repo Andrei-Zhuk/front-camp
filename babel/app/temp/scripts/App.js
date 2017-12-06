@@ -1,74 +1,765 @@
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
-/******/ 			exports: {},
-/******/ 			id: moduleId,
-/******/ 			loaded: false
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
-
+/******/ 		module.l = true;
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nvar _displaySources = __webpack_require__(1);\n\nvar _displaySources2 = _interopRequireDefault(_displaySources);\n\nvar _variables = __webpack_require__(2);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfetch('' + _variables.SERVER + _variables.TYPE_SOURCES + 'apiKey=' + _variables.API_KEY).then(function (response) {\n    return response.json();\n}).then(function (data) {\n    data.sources.forEach(function (source) {\n        if (!_variables.sources[source.category]) {\n            _variables.sources[source.category] = {\n                title: source.category,\n                content: []\n            };\n        };\n        _variables.sources[source.category].content.push(source);\n    });\n    (0, _displaySources2.default)(_variables.sources);\n});//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9hcHAvYXNzZXRzL3NjcmlwdHMvQXBwLmpzPzQ2YTciXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGRpc3BsYXlTb3VyY2VzIGZyb20gJy4vbW9kdWxlcy9kaXNwbGF5U291cmNlcyc7XHJcbmltcG9ydCB7QVBJX0tFWSwgU0VSVkVSLCBUWVBFX1NPVVJDRVMsIHNvdXJjZXN9IGZyb20gJy4vYmFzZS92YXJpYWJsZXMnO1xyXG5cclxuZmV0Y2goYCR7U0VSVkVSfSR7VFlQRV9TT1VSQ0VTfWFwaUtleT0ke0FQSV9LRVl9YClcclxuICAgIC50aGVuKHJlc3BvbnNlID0+IHJlc3BvbnNlLmpzb24oKSlcclxuICAgIC50aGVuKGRhdGEgPT4ge1xyXG4gICAgICAgIGRhdGEuc291cmNlcy5mb3JFYWNoKHNvdXJjZSA9PiB7XHJcbiAgICAgICAgICAgIGlmICghc291cmNlc1tzb3VyY2UuY2F0ZWdvcnldKSB7XHJcbiAgICAgICAgICAgICAgICBzb3VyY2VzW3NvdXJjZS5jYXRlZ29yeV0gPSB7XHJcbiAgICAgICAgICAgICAgICAgICAgdGl0bGU6IHNvdXJjZS5jYXRlZ29yeSxcclxuICAgICAgICAgICAgICAgICAgICBjb250ZW50OiBbXVxyXG4gICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICB9O1xyXG4gICAgICAgICAgICBzb3VyY2VzW3NvdXJjZS5jYXRlZ29yeV0uY29udGVudC5wdXNoKHNvdXJjZSlcclxuICAgICAgICB9KVxyXG4gICAgICAgIGRpc3BsYXlTb3VyY2VzKHNvdXJjZXMpO1xyXG4gICAgfSlcclxuXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9hc3NldHMvc2NyaXB0cy9BcHAuanMiXSwibWFwcGluZ3MiOiI7O0FBQUE7QUFDQTs7O0FBQUE7QUFDQTs7O0FBQ0E7QUFDQTtBQUFBO0FBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUZBO0FBSUE7QUFDQTtBQUNBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var API_KEY = exports.API_KEY = "cc9811e8c45e4304bca8110b265a30fb";
+var SERVER = exports.SERVER = "https://newsapi.org/v2/";
+var TYPE_SOURCES = exports.TYPE_SOURCES = "sources?";
+var TYPE_EVERYTHING = exports.TYPE_EVERYTHING = "everything?";
+var sources = exports.sources = {};
+var articles = exports.articles = {};
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-	eval("\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.default = displaySources;\n\nvar _variables = __webpack_require__(2);\n\nvar _displayArticles = __webpack_require__(3);\n\nvar _displayArticles2 = _interopRequireDefault(_displayArticles);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction displaySources(sources) {\n    var container = document.getElementById('sources-container');\n\n    for (var category in sources) {\n        var categoryContainer = document.createElement('div');\n        categoryContainer.classList.add(\"categoryContainer\");\n        var categoryTitle = document.createElement('a');\n        categoryTitle.href = '#';\n        categoryTitle.textContent = sources[category].title;\n        categoryTitle.id = category;\n        categoryTitle.classList.add(\"category\");\n        categoryTitle.addEventListener(\"click\", handleCategoryClick);\n        var sourceList = document.createElement('ul');\n        sourceList.classList.add(\"sourceList\");\n\n        for (var i = 0; i < sources[category].content.length; i++) {\n            var source = document.createElement('li');\n            source.classList.add(\"source\");\n            var sourceTitle = document.createElement('a');\n            sourceTitle.href = '#';\n            sourceTitle.textContent = sources[category].content[i].name;\n            sourceTitle.id = sources[category].content[i].id;\n            sourceTitle.classList.add(\"sourceTitle\");\n            sourceTitle.addEventListener('click', handleSourceClick);\n\n            source.appendChild(sourceTitle);\n            sourceList.appendChild(source);\n        }\n\n        sources[category].list = sourceList;\n        categoryContainer.appendChild(categoryTitle);\n        categoryContainer.appendChild(sourceList);\n        container.appendChild(categoryContainer);\n    }\n}\n\nfunction handleCategoryClick(e) {\n    _variables.sources[e.target.id].list.classList.toggle(\"sourceListVisible\");\n}\n\nfunction handleSourceClick(e) {\n    var source = e.target.id;\n    fetch(\"\" + _variables.SERVER + _variables.TYPE_EVERYTHING + \"apiKey=\" + _variables.API_KEY + \"&sources=\" + source).then(function (response) {\n        return response.json();\n    }).then(function (data) {\n        _variables.articles.content = data.articles;\n        (0, _displayArticles2.default)(_variables.articles);\n    });\n}//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9hcHAvYXNzZXRzL3NjcmlwdHMvbW9kdWxlcy9kaXNwbGF5U291cmNlcy5qcz82MTMyIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7QVBJX0tFWSwgU0VSVkVSLCBUWVBFX0VWRVJZVEhJTkcsIHNvdXJjZXMsIGFydGljbGVzfSBmcm9tIFwiLi8uLi9iYXNlL3ZhcmlhYmxlc1wiO1xyXG5pbXBvcnQgZGlzcGxheUFydGljbGVzIGZyb20gXCIuL2Rpc3BsYXlBcnRpY2xlc1wiO1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gZGlzcGxheVNvdXJjZXMoc291cmNlcykge1xyXG4gICAgbGV0IGNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdzb3VyY2VzLWNvbnRhaW5lcicpO1xyXG5cclxuICAgIGZvciAobGV0IGNhdGVnb3J5IGluIHNvdXJjZXMpIHtcclxuICAgICAgICBsZXQgY2F0ZWdvcnlDb250YWluZXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTtcclxuICAgICAgICBjYXRlZ29yeUNvbnRhaW5lci5jbGFzc0xpc3QuYWRkKFwiY2F0ZWdvcnlDb250YWluZXJcIilcclxuICAgICAgICBsZXQgY2F0ZWdvcnlUaXRsZSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2EnKTtcclxuICAgICAgICBjYXRlZ29yeVRpdGxlLmhyZWYgPSAnIyc7XHJcbiAgICAgICAgY2F0ZWdvcnlUaXRsZS50ZXh0Q29udGVudCA9IHNvdXJjZXNbY2F0ZWdvcnldLnRpdGxlO1xyXG4gICAgICAgIGNhdGVnb3J5VGl0bGUuaWQgPSBjYXRlZ29yeTtcclxuICAgICAgICBjYXRlZ29yeVRpdGxlLmNsYXNzTGlzdC5hZGQoXCJjYXRlZ29yeVwiKTtcclxuICAgICAgICBjYXRlZ29yeVRpdGxlLmFkZEV2ZW50TGlzdGVuZXIoXCJjbGlja1wiLCBoYW5kbGVDYXRlZ29yeUNsaWNrKVxyXG4gICAgICAgIGxldCBzb3VyY2VMaXN0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgndWwnKTtcclxuICAgICAgICBzb3VyY2VMaXN0LmNsYXNzTGlzdC5hZGQoXCJzb3VyY2VMaXN0XCIpO1xyXG5cclxuICAgICAgICBmb3IgKGxldCBpID0gMDsgaSA8IHNvdXJjZXNbY2F0ZWdvcnldLmNvbnRlbnQubGVuZ3RoOyBpKyspIHtcclxuICAgICAgICAgICAgbGV0IHNvdXJjZSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2xpJyk7XHJcbiAgICAgICAgICAgIHNvdXJjZS5jbGFzc0xpc3QuYWRkKFwic291cmNlXCIpXHJcbiAgICAgICAgICAgIGxldCBzb3VyY2VUaXRsZSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2EnKTtcclxuICAgICAgICAgICAgc291cmNlVGl0bGUuaHJlZiA9ICcjJztcclxuICAgICAgICAgICAgc291cmNlVGl0bGUudGV4dENvbnRlbnQgPSBzb3VyY2VzW2NhdGVnb3J5XS5jb250ZW50W2ldLm5hbWU7XHJcbiAgICAgICAgICAgIHNvdXJjZVRpdGxlLmlkID0gc291cmNlc1tjYXRlZ29yeV0uY29udGVudFtpXS5pZDtcclxuICAgICAgICAgICAgc291cmNlVGl0bGUuY2xhc3NMaXN0LmFkZChcInNvdXJjZVRpdGxlXCIpXHJcbiAgICAgICAgICAgIHNvdXJjZVRpdGxlLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgaGFuZGxlU291cmNlQ2xpY2spXHJcblxyXG4gICAgICAgICAgICBzb3VyY2UuYXBwZW5kQ2hpbGQoc291cmNlVGl0bGUpO1xyXG4gICAgICAgICAgICBzb3VyY2VMaXN0LmFwcGVuZENoaWxkKHNvdXJjZSk7XHJcbiAgICAgICAgfVxyXG5cclxuICAgICAgICBzb3VyY2VzW2NhdGVnb3J5XS5saXN0ID0gc291cmNlTGlzdFxyXG4gICAgICAgIGNhdGVnb3J5Q29udGFpbmVyLmFwcGVuZENoaWxkKGNhdGVnb3J5VGl0bGUpO1xyXG4gICAgICAgIGNhdGVnb3J5Q29udGFpbmVyLmFwcGVuZENoaWxkKHNvdXJjZUxpc3QpO1xyXG4gICAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChjYXRlZ29yeUNvbnRhaW5lcik7XHJcbiAgICB9XHJcbn1cclxuXHJcbmZ1bmN0aW9uIGhhbmRsZUNhdGVnb3J5Q2xpY2soZSkge1xyXG4gICAgc291cmNlc1tlLnRhcmdldC5pZF0ubGlzdC5jbGFzc0xpc3QudG9nZ2xlKFwic291cmNlTGlzdFZpc2libGVcIik7XHJcbn1cclxuXHJcbmZ1bmN0aW9uIGhhbmRsZVNvdXJjZUNsaWNrKGUpIHtcclxuICAgIGxldCBzb3VyY2UgPSBlLnRhcmdldC5pZDtcclxuICAgIGZldGNoKGAke1NFUlZFUn0ke1RZUEVfRVZFUllUSElOR31hcGlLZXk9JHtBUElfS0VZfSZzb3VyY2VzPSR7c291cmNlfWApXHJcbiAgICAgICAgLnRoZW4ocmVzcG9uc2UgPT4gcmVzcG9uc2UuanNvbigpKVxyXG4gICAgICAgIC50aGVuKGRhdGEgPT4ge1xyXG4gICAgICAgICAgICBhcnRpY2xlcy5jb250ZW50ID0gZGF0YS5hcnRpY2xlcztcclxuICAgICAgICAgICAgZGlzcGxheUFydGljbGVzKGFydGljbGVzKTtcclxuICAgICAgICB9KVxyXG59XHJcblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBhcHAvYXNzZXRzL3NjcmlwdHMvbW9kdWxlcy9kaXNwbGF5U291cmNlcy5qcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFHQTtBQUNBO0FBSkE7QUFDQTtBQUFBO0FBQ0E7Ozs7O0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUFBO0FBRUE7QUFDQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==");
+(function(self) {
+  'use strict';
+
+  if (self.fetch) {
+    return
+  }
+
+  var support = {
+    searchParams: 'URLSearchParams' in self,
+    iterable: 'Symbol' in self && 'iterator' in Symbol,
+    blob: 'FileReader' in self && 'Blob' in self && (function() {
+      try {
+        new Blob()
+        return true
+      } catch(e) {
+        return false
+      }
+    })(),
+    formData: 'FormData' in self,
+    arrayBuffer: 'ArrayBuffer' in self
+  }
+
+  if (support.arrayBuffer) {
+    var viewClasses = [
+      '[object Int8Array]',
+      '[object Uint8Array]',
+      '[object Uint8ClampedArray]',
+      '[object Int16Array]',
+      '[object Uint16Array]',
+      '[object Int32Array]',
+      '[object Uint32Array]',
+      '[object Float32Array]',
+      '[object Float64Array]'
+    ]
+
+    var isDataView = function(obj) {
+      return obj && DataView.prototype.isPrototypeOf(obj)
+    }
+
+    var isArrayBufferView = ArrayBuffer.isView || function(obj) {
+      return obj && viewClasses.indexOf(Object.prototype.toString.call(obj)) > -1
+    }
+  }
+
+  function normalizeName(name) {
+    if (typeof name !== 'string') {
+      name = String(name)
+    }
+    if (/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)) {
+      throw new TypeError('Invalid character in header field name')
+    }
+    return name.toLowerCase()
+  }
+
+  function normalizeValue(value) {
+    if (typeof value !== 'string') {
+      value = String(value)
+    }
+    return value
+  }
+
+  // Build a destructive iterator for the value list
+  function iteratorFor(items) {
+    var iterator = {
+      next: function() {
+        var value = items.shift()
+        return {done: value === undefined, value: value}
+      }
+    }
+
+    if (support.iterable) {
+      iterator[Symbol.iterator] = function() {
+        return iterator
+      }
+    }
+
+    return iterator
+  }
+
+  function Headers(headers) {
+    this.map = {}
+
+    if (headers instanceof Headers) {
+      headers.forEach(function(value, name) {
+        this.append(name, value)
+      }, this)
+    } else if (Array.isArray(headers)) {
+      headers.forEach(function(header) {
+        this.append(header[0], header[1])
+      }, this)
+    } else if (headers) {
+      Object.getOwnPropertyNames(headers).forEach(function(name) {
+        this.append(name, headers[name])
+      }, this)
+    }
+  }
+
+  Headers.prototype.append = function(name, value) {
+    name = normalizeName(name)
+    value = normalizeValue(value)
+    var oldValue = this.map[name]
+    this.map[name] = oldValue ? oldValue+','+value : value
+  }
+
+  Headers.prototype['delete'] = function(name) {
+    delete this.map[normalizeName(name)]
+  }
+
+  Headers.prototype.get = function(name) {
+    name = normalizeName(name)
+    return this.has(name) ? this.map[name] : null
+  }
+
+  Headers.prototype.has = function(name) {
+    return this.map.hasOwnProperty(normalizeName(name))
+  }
+
+  Headers.prototype.set = function(name, value) {
+    this.map[normalizeName(name)] = normalizeValue(value)
+  }
+
+  Headers.prototype.forEach = function(callback, thisArg) {
+    for (var name in this.map) {
+      if (this.map.hasOwnProperty(name)) {
+        callback.call(thisArg, this.map[name], name, this)
+      }
+    }
+  }
+
+  Headers.prototype.keys = function() {
+    var items = []
+    this.forEach(function(value, name) { items.push(name) })
+    return iteratorFor(items)
+  }
+
+  Headers.prototype.values = function() {
+    var items = []
+    this.forEach(function(value) { items.push(value) })
+    return iteratorFor(items)
+  }
+
+  Headers.prototype.entries = function() {
+    var items = []
+    this.forEach(function(value, name) { items.push([name, value]) })
+    return iteratorFor(items)
+  }
+
+  if (support.iterable) {
+    Headers.prototype[Symbol.iterator] = Headers.prototype.entries
+  }
+
+  function consumed(body) {
+    if (body.bodyUsed) {
+      return Promise.reject(new TypeError('Already read'))
+    }
+    body.bodyUsed = true
+  }
+
+  function fileReaderReady(reader) {
+    return new Promise(function(resolve, reject) {
+      reader.onload = function() {
+        resolve(reader.result)
+      }
+      reader.onerror = function() {
+        reject(reader.error)
+      }
+    })
+  }
+
+  function readBlobAsArrayBuffer(blob) {
+    var reader = new FileReader()
+    var promise = fileReaderReady(reader)
+    reader.readAsArrayBuffer(blob)
+    return promise
+  }
+
+  function readBlobAsText(blob) {
+    var reader = new FileReader()
+    var promise = fileReaderReady(reader)
+    reader.readAsText(blob)
+    return promise
+  }
+
+  function readArrayBufferAsText(buf) {
+    var view = new Uint8Array(buf)
+    var chars = new Array(view.length)
+
+    for (var i = 0; i < view.length; i++) {
+      chars[i] = String.fromCharCode(view[i])
+    }
+    return chars.join('')
+  }
+
+  function bufferClone(buf) {
+    if (buf.slice) {
+      return buf.slice(0)
+    } else {
+      var view = new Uint8Array(buf.byteLength)
+      view.set(new Uint8Array(buf))
+      return view.buffer
+    }
+  }
+
+  function Body() {
+    this.bodyUsed = false
+
+    this._initBody = function(body) {
+      this._bodyInit = body
+      if (!body) {
+        this._bodyText = ''
+      } else if (typeof body === 'string') {
+        this._bodyText = body
+      } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {
+        this._bodyBlob = body
+      } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
+        this._bodyFormData = body
+      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+        this._bodyText = body.toString()
+      } else if (support.arrayBuffer && support.blob && isDataView(body)) {
+        this._bodyArrayBuffer = bufferClone(body.buffer)
+        // IE 10-11 can't handle a DataView body.
+        this._bodyInit = new Blob([this._bodyArrayBuffer])
+      } else if (support.arrayBuffer && (ArrayBuffer.prototype.isPrototypeOf(body) || isArrayBufferView(body))) {
+        this._bodyArrayBuffer = bufferClone(body)
+      } else {
+        throw new Error('unsupported BodyInit type')
+      }
+
+      if (!this.headers.get('content-type')) {
+        if (typeof body === 'string') {
+          this.headers.set('content-type', 'text/plain;charset=UTF-8')
+        } else if (this._bodyBlob && this._bodyBlob.type) {
+          this.headers.set('content-type', this._bodyBlob.type)
+        } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+          this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')
+        }
+      }
+    }
+
+    if (support.blob) {
+      this.blob = function() {
+        var rejected = consumed(this)
+        if (rejected) {
+          return rejected
+        }
+
+        if (this._bodyBlob) {
+          return Promise.resolve(this._bodyBlob)
+        } else if (this._bodyArrayBuffer) {
+          return Promise.resolve(new Blob([this._bodyArrayBuffer]))
+        } else if (this._bodyFormData) {
+          throw new Error('could not read FormData body as blob')
+        } else {
+          return Promise.resolve(new Blob([this._bodyText]))
+        }
+      }
+
+      this.arrayBuffer = function() {
+        if (this._bodyArrayBuffer) {
+          return consumed(this) || Promise.resolve(this._bodyArrayBuffer)
+        } else {
+          return this.blob().then(readBlobAsArrayBuffer)
+        }
+      }
+    }
+
+    this.text = function() {
+      var rejected = consumed(this)
+      if (rejected) {
+        return rejected
+      }
+
+      if (this._bodyBlob) {
+        return readBlobAsText(this._bodyBlob)
+      } else if (this._bodyArrayBuffer) {
+        return Promise.resolve(readArrayBufferAsText(this._bodyArrayBuffer))
+      } else if (this._bodyFormData) {
+        throw new Error('could not read FormData body as text')
+      } else {
+        return Promise.resolve(this._bodyText)
+      }
+    }
+
+    if (support.formData) {
+      this.formData = function() {
+        return this.text().then(decode)
+      }
+    }
+
+    this.json = function() {
+      return this.text().then(JSON.parse)
+    }
+
+    return this
+  }
+
+  // HTTP methods whose capitalization should be normalized
+  var methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT']
+
+  function normalizeMethod(method) {
+    var upcased = method.toUpperCase()
+    return (methods.indexOf(upcased) > -1) ? upcased : method
+  }
+
+  function Request(input, options) {
+    options = options || {}
+    var body = options.body
+
+    if (input instanceof Request) {
+      if (input.bodyUsed) {
+        throw new TypeError('Already read')
+      }
+      this.url = input.url
+      this.credentials = input.credentials
+      if (!options.headers) {
+        this.headers = new Headers(input.headers)
+      }
+      this.method = input.method
+      this.mode = input.mode
+      if (!body && input._bodyInit != null) {
+        body = input._bodyInit
+        input.bodyUsed = true
+      }
+    } else {
+      this.url = String(input)
+    }
+
+    this.credentials = options.credentials || this.credentials || 'omit'
+    if (options.headers || !this.headers) {
+      this.headers = new Headers(options.headers)
+    }
+    this.method = normalizeMethod(options.method || this.method || 'GET')
+    this.mode = options.mode || this.mode || null
+    this.referrer = null
+
+    if ((this.method === 'GET' || this.method === 'HEAD') && body) {
+      throw new TypeError('Body not allowed for GET or HEAD requests')
+    }
+    this._initBody(body)
+  }
+
+  Request.prototype.clone = function() {
+    return new Request(this, { body: this._bodyInit })
+  }
+
+  function decode(body) {
+    var form = new FormData()
+    body.trim().split('&').forEach(function(bytes) {
+      if (bytes) {
+        var split = bytes.split('=')
+        var name = split.shift().replace(/\+/g, ' ')
+        var value = split.join('=').replace(/\+/g, ' ')
+        form.append(decodeURIComponent(name), decodeURIComponent(value))
+      }
+    })
+    return form
+  }
+
+  function parseHeaders(rawHeaders) {
+    var headers = new Headers()
+    rawHeaders.split(/\r?\n/).forEach(function(line) {
+      var parts = line.split(':')
+      var key = parts.shift().trim()
+      if (key) {
+        var value = parts.join(':').trim()
+        headers.append(key, value)
+      }
+    })
+    return headers
+  }
+
+  Body.call(Request.prototype)
+
+  function Response(bodyInit, options) {
+    if (!options) {
+      options = {}
+    }
+
+    this.type = 'default'
+    this.status = 'status' in options ? options.status : 200
+    this.ok = this.status >= 200 && this.status < 300
+    this.statusText = 'statusText' in options ? options.statusText : 'OK'
+    this.headers = new Headers(options.headers)
+    this.url = options.url || ''
+    this._initBody(bodyInit)
+  }
+
+  Body.call(Response.prototype)
+
+  Response.prototype.clone = function() {
+    return new Response(this._bodyInit, {
+      status: this.status,
+      statusText: this.statusText,
+      headers: new Headers(this.headers),
+      url: this.url
+    })
+  }
+
+  Response.error = function() {
+    var response = new Response(null, {status: 0, statusText: ''})
+    response.type = 'error'
+    return response
+  }
+
+  var redirectStatuses = [301, 302, 303, 307, 308]
+
+  Response.redirect = function(url, status) {
+    if (redirectStatuses.indexOf(status) === -1) {
+      throw new RangeError('Invalid status code')
+    }
+
+    return new Response(null, {status: status, headers: {location: url}})
+  }
+
+  self.Headers = Headers
+  self.Request = Request
+  self.Response = Response
+
+  self.fetch = function(input, init) {
+    return new Promise(function(resolve, reject) {
+      var request = new Request(input, init)
+      var xhr = new XMLHttpRequest()
+
+      xhr.onload = function() {
+        var options = {
+          status: xhr.status,
+          statusText: xhr.statusText,
+          headers: parseHeaders(xhr.getAllResponseHeaders() || '')
+        }
+        options.url = 'responseURL' in xhr ? xhr.responseURL : options.headers.get('X-Request-URL')
+        var body = 'response' in xhr ? xhr.response : xhr.responseText
+        resolve(new Response(body, options))
+      }
+
+      xhr.onerror = function() {
+        reject(new TypeError('Network request failed'))
+      }
+
+      xhr.ontimeout = function() {
+        reject(new TypeError('Network request failed'))
+      }
+
+      xhr.open(request.method, request.url, true)
+
+      if (request.credentials === 'include') {
+        xhr.withCredentials = true
+      }
+
+      if ('responseType' in xhr && support.blob) {
+        xhr.responseType = 'blob'
+      }
+
+      request.headers.forEach(function(value, name) {
+        xhr.setRequestHeader(name, value)
+      })
+
+      xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit)
+    })
+  }
+  self.fetch.polyfill = true
+})(typeof self !== 'undefined' ? self : this);
+
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	eval("\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar API_KEY = exports.API_KEY = \"cc9811e8c45e4304bca8110b265a30fb\";\nvar SERVER = exports.SERVER = \"https://newsapi.org/v2/\";\nvar TYPE_SOURCES = exports.TYPE_SOURCES = \"sources?\";\nvar TYPE_EVERYTHING = exports.TYPE_EVERYTHING = \"everything?\";\nvar sources = exports.sources = {};\nvar articles = exports.articles = {};//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMi5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9hcHAvYXNzZXRzL3NjcmlwdHMvYmFzZS92YXJpYWJsZXMuanM/MDRiOCJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY29uc3QgQVBJX0tFWSA9IFwiY2M5ODExZThjNDVlNDMwNGJjYTgxMTBiMjY1YTMwZmJcIjtcclxuZXhwb3J0IGNvbnN0IFNFUlZFUiA9IFwiaHR0cHM6Ly9uZXdzYXBpLm9yZy92Mi9cIjtcclxuZXhwb3J0IGNvbnN0IFRZUEVfU09VUkNFUyA9IFwic291cmNlcz9cIjtcclxuZXhwb3J0IGNvbnN0IFRZUEVfRVZFUllUSElORyA9IFwiZXZlcnl0aGluZz9cIjtcclxuZXhwb3J0IGxldCBzb3VyY2VzID0ge307XHJcbmV4cG9ydCBsZXQgYXJ0aWNsZXMgPSB7fTtcclxuXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9hc3NldHMvc2NyaXB0cy9iYXNlL3ZhcmlhYmxlcy5qcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOyIsInNvdXJjZVJvb3QiOiIifQ==");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = displaySources;
+
+var _variables = __webpack_require__(0);
+
+var _displayArticles = __webpack_require__(5);
+
+var _displayArticles2 = _interopRequireDefault(_displayArticles);
+
+__webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function displaySources(sources) {
+    var container = document.getElementById('sources-container');
+    var a = 4;
+    console.log(a);
+
+    for (var category in sources) {
+        var categoryContainer = document.createElement('div');
+        categoryContainer.classList.add("categoryContainer");
+        var categoryTitle = document.createElement('a');
+        categoryTitle.href = '#';
+        categoryTitle.textContent = sources[category].title;
+        categoryTitle.id = category;
+        categoryTitle.classList.add("category");
+        categoryTitle.addEventListener("click", handleCategoryClick);
+        var sourceList = document.createElement('ul');
+        sourceList.classList.add("sourceList");
+
+        for (var i = 0; i < sources[category].content.length; i++) {
+            var source = document.createElement('li');
+            source.classList.add("source");
+            var sourceTitle = document.createElement('a');
+            sourceTitle.href = '#';
+            sourceTitle.textContent = sources[category].content[i].name;
+            sourceTitle.id = sources[category].content[i].id;
+            sourceTitle.classList.add("sourceTitle");
+            sourceTitle.addEventListener('click', handleSourceClick);
+
+            source.appendChild(sourceTitle);
+            sourceList.appendChild(source);
+        }
+
+        sources[category].list = sourceList;
+        categoryContainer.appendChild(categoryTitle);
+        categoryContainer.appendChild(sourceList);
+        container.appendChild(categoryContainer);
+    }
+}
+
+function handleCategoryClick(e) {
+    _variables.sources[e.target.id].list.classList.toggle("sourceListVisible");
+}
+
+function handleSourceClick(e) {
+    var source = e.target.id;
+    fetch("" + _variables.SERVER + _variables.TYPE_EVERYTHING + "apiKey=" + _variables.API_KEY + "&sources=" + source).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        _variables.articles.content = data.articles;
+        (0, _displayArticles2.default)(_variables.articles);
+    });
+}
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	eval("\"use strict\";\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nexports.default = displayArticles;\n\nvar _variables = __webpack_require__(2);\n\nvar _Article = __webpack_require__(4);\n\nvar _Article2 = _interopRequireDefault(_Article);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction displayArticles(articles) {\n    var container = document.getElementById('articles-container');\n\n    if (container.children.length !== 0) {\n        container.removeChild(container.children[0]);\n        container.removeChild(container.children[1]);\n    }\n    var articlesString = \"\";\n\n    for (var i = 0; i < articles.content.length; i++) {\n        var article = new _Article2.default(articles.content[i]);\n        articlesString += article.makeArticle();\n    }\n    container.innerHTML = \"<h2 class=\\\"articlesTitle\\\">Articles:</h2>\\n                           <ul class=\\\"articleList\\\">\" + articlesString + \"</ul>\";\n}//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9hcHAvYXNzZXRzL3NjcmlwdHMvbW9kdWxlcy9kaXNwbGF5QXJ0aWNsZXMuanM/OTEyYiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge2FydGljbGVzfSBmcm9tIFwiLi8uLi9iYXNlL3ZhcmlhYmxlc1wiO1xyXG5pbXBvcnQgQXJ0aWNsZSBmcm9tIFwiLi9BcnRpY2xlXCI7XHJcblxyXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBkaXNwbGF5QXJ0aWNsZXMoYXJ0aWNsZXMpIHtcclxuICAgIGxldCBjb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYXJ0aWNsZXMtY29udGFpbmVyJyk7XHJcblxyXG4gICAgaWYgKGNvbnRhaW5lci5jaGlsZHJlbi5sZW5ndGggIT09IDApIHtcclxuICAgICAgICBjb250YWluZXIucmVtb3ZlQ2hpbGQoY29udGFpbmVyLmNoaWxkcmVuWzBdKTtcclxuICAgICAgICBjb250YWluZXIucmVtb3ZlQ2hpbGQoY29udGFpbmVyLmNoaWxkcmVuWzFdKVxyXG4gICAgfVxyXG4gICAgbGV0IGFydGljbGVzU3RyaW5nID0gXCJcIjtcclxuXHJcbiAgICBmb3IgKGxldCBpID0gMDsgaSA8IGFydGljbGVzLmNvbnRlbnQubGVuZ3RoOyBpKyspIHtcclxuICAgICAgICBsZXQgYXJ0aWNsZSA9IG5ldyBBcnRpY2xlKGFydGljbGVzLmNvbnRlbnRbaV0pO1xyXG4gICAgICAgIGFydGljbGVzU3RyaW5nICs9IGFydGljbGUubWFrZUFydGljbGUoKTtcclxuICAgIH1cclxuICAgIGNvbnRhaW5lci5pbm5lckhUTUwgPSBgPGgyIGNsYXNzPVwiYXJ0aWNsZXNUaXRsZVwiPkFydGljbGVzOjwvaDI+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIDx1bCBjbGFzcz1cImFydGljbGVMaXN0XCI+JHthcnRpY2xlc1N0cmluZ308L3VsPmBcclxufVxyXG5cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gYXBwL2Fzc2V0cy9zY3JpcHRzL21vZHVsZXMvZGlzcGxheUFydGljbGVzLmpzIl0sIm1hcHBpbmdzIjoiOzs7OztBQUdBO0FBQ0E7QUFKQTtBQUNBO0FBQUE7QUFDQTs7Ozs7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUEiLCJzb3VyY2VSb290IjoiIn0=");
+"use strict";
+
+
+var _displaySources = __webpack_require__(2);
+
+var _displaySources2 = _interopRequireDefault(_displaySources);
+
+var _variables = __webpack_require__(0);
+
+__webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var a = 4;
+
+fetch('' + _variables.SERVER + _variables.TYPE_SOURCES + 'apiKey=' + _variables.API_KEY).then(function (response) {
+    return response.json();
+}).then(function (data) {
+    data.sources.forEach(function (source) {
+        if (!_variables.sources[source.category]) {
+            _variables.sources[source.category] = {
+                title: source.category,
+                content: []
+            };
+        };
+        _variables.sources[source.category].content.push(source);
+    });
+    (0, _displaySources2.default)(_variables.sources);
+    console.log(a);
+});
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-	eval("'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar Article = function () {\n    function Article(data) {\n        _classCallCheck(this, Article);\n\n        this.data = data;\n    }\n\n    _createClass(Article, [{\n        key: 'makeImage',\n        value: function makeImage() {\n            return '<a href=\"' + this.data.url + '\" class=\"articleImageLink\">\\n                    <img src=\"' + this.data.urlToImage + '\" class=\"articleImage\">\\n                </a>';\n        }\n    }, {\n        key: 'makeTitle',\n        value: function makeTitle() {\n            return '<a href=\"' + this.data.url + '\" class=\"articleTitle\">' + this.data.title + '</a>';\n        }\n    }, {\n        key: 'makeAuthor',\n        value: function makeAuthor() {\n            return '<span class=\"articleAuthor\">' + (this.data.author ? 'Author: ' + this.data.author : '') + '</span>';\n        }\n    }, {\n        key: 'makePublishedTime',\n        value: function makePublishedTime() {\n            var time = new Date(this.data.publishedAt);\n            return '<span class=\"articleTime\">\\n                    Published at ' + (time.getHours() < 10 ? '0' + time.getHours() : time.getHours()) + ':' + (time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes()) + ' ' + (time.getDate() < 10 ? '0' + time.getDate() : time.getDate()) + '.' + (time.getMonth() + 1 < 10 ? '0' + time.getMonth() + 1 : time.getMonth() + 1) + '.' + time.getFullYear() + '\\n                </span>';\n        }\n    }, {\n        key: 'makeDescription',\n        value: function makeDescription() {\n            return '<p class=\"articleDescription\">' + this.data.description + '</p>';\n        }\n    }, {\n        key: 'makeContentContainer',\n        value: function makeContentContainer() {\n            return '<div class=\"articleContent\">\\n                    ' + this.makeTitle() + ' ' + this.makeAuthor() + ' ' + this.makePublishedTime() + ' ' + this.makeDescription() + '\\n                </div>';\n        }\n    }, {\n        key: 'makeArticle',\n        value: function makeArticle() {\n            return '<li class=\"article\">' + this.makeImage() + ' ' + this.makeContentContainer() + '</li>';\n        }\n    }]);\n\n    return Article;\n}();\n\nexports.default = Article;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9hcHAvYXNzZXRzL3NjcmlwdHMvbW9kdWxlcy9BcnRpY2xlLmpzPzFiMmIiXSwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgY2xhc3MgQXJ0aWNsZSB7XHJcbiAgICBjb25zdHJ1Y3RvcihkYXRhKSB7XHJcbiAgICAgICAgdGhpcy5kYXRhID0gZGF0YVxyXG4gICAgfVxyXG5cclxuICAgIG1ha2VJbWFnZSgpIHtcclxuICAgICAgICByZXR1cm4gYDxhIGhyZWY9XCIke3RoaXMuZGF0YS51cmx9XCIgY2xhc3M9XCJhcnRpY2xlSW1hZ2VMaW5rXCI+XHJcbiAgICAgICAgICAgICAgICAgICAgPGltZyBzcmM9XCIke3RoaXMuZGF0YS51cmxUb0ltYWdlfVwiIGNsYXNzPVwiYXJ0aWNsZUltYWdlXCI+XHJcbiAgICAgICAgICAgICAgICA8L2E+YFxyXG4gICAgfVxyXG5cclxuICAgIG1ha2VUaXRsZSgpIHtcclxuICAgICAgICByZXR1cm4gYDxhIGhyZWY9XCIke3RoaXMuZGF0YS51cmx9XCIgY2xhc3M9XCJhcnRpY2xlVGl0bGVcIj4ke3RoaXMuZGF0YS50aXRsZX08L2E+YFxyXG4gICAgfVxyXG5cclxuICAgIG1ha2VBdXRob3IoKSB7XHJcbiAgICAgICAgcmV0dXJuIGA8c3BhbiBjbGFzcz1cImFydGljbGVBdXRob3JcIj4ke3RoaXMuZGF0YS5hdXRob3IgPyBgQXV0aG9yOiAke3RoaXMuZGF0YS5hdXRob3J9YCA6ICcnfTwvc3Bhbj5gXHJcbiAgICB9XHJcblxyXG4gICAgbWFrZVB1Ymxpc2hlZFRpbWUoKSB7XHJcbiAgICAgICAgbGV0IHRpbWUgPSBuZXcgRGF0ZSh0aGlzLmRhdGEucHVibGlzaGVkQXQpO1xyXG4gICAgICAgIHJldHVybiBgPHNwYW4gY2xhc3M9XCJhcnRpY2xlVGltZVwiPlxyXG4gICAgICAgICAgICAgICAgICAgIFB1Ymxpc2hlZCBhdCAke3RpbWUuZ2V0SG91cnMoKSA8IDEwID8gJzAnICsgdGltZS5nZXRIb3VycygpIDogdGltZS5nZXRIb3VycygpfToke3RpbWUuZ2V0TWludXRlcygpIDwgMTAgPyAnMCcgKyB0aW1lLmdldE1pbnV0ZXMoKSA6IHRpbWUuZ2V0TWludXRlcygpfSAke3RpbWUuZ2V0RGF0ZSgpIDwgMTAgPyAnMCcgKyB0aW1lLmdldERhdGUoKSA6IHRpbWUuZ2V0RGF0ZSgpfS4ke3RpbWUuZ2V0TW9udGgoKSArIDEgPCAxMCA/ICcwJyArIHRpbWUuZ2V0TW9udGgoKSArIDEgOiB0aW1lLmdldE1vbnRoKCkgKyAxfS4ke3RpbWUuZ2V0RnVsbFllYXIoKX1cclxuICAgICAgICAgICAgICAgIDwvc3Bhbj5gXHJcbiAgICB9XHJcblxyXG4gICAgbWFrZURlc2NyaXB0aW9uKCkge1xyXG4gICAgICAgIHJldHVybiBgPHAgY2xhc3M9XCJhcnRpY2xlRGVzY3JpcHRpb25cIj4ke3RoaXMuZGF0YS5kZXNjcmlwdGlvbn08L3A+YFxyXG4gICAgfVxyXG5cclxuICAgIG1ha2VDb250ZW50Q29udGFpbmVyKCkge1xyXG4gICAgICAgIHJldHVybiBgPGRpdiBjbGFzcz1cImFydGljbGVDb250ZW50XCI+XHJcbiAgICAgICAgICAgICAgICAgICAgJHt0aGlzLm1ha2VUaXRsZSgpfSAke3RoaXMubWFrZUF1dGhvcigpfSAke3RoaXMubWFrZVB1Ymxpc2hlZFRpbWUoKX0gJHt0aGlzLm1ha2VEZXNjcmlwdGlvbigpfVxyXG4gICAgICAgICAgICAgICAgPC9kaXY+YFxyXG4gICAgfVxyXG5cclxuICAgIG1ha2VBcnRpY2xlKCkge1xyXG4gICAgICAgIHJldHVybiBgPGxpIGNsYXNzPVwiYXJ0aWNsZVwiPiR7dGhpcy5tYWtlSW1hZ2UoKX0gJHt0aGlzLm1ha2VDb250ZW50Q29udGFpbmVyKCl9PC9saT5gXHJcbiAgICB9XHJcbn1cclxuXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIGFwcC9hc3NldHMvc2NyaXB0cy9tb2R1bGVzL0FydGljbGUuanMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7QUFBQTtBQUNBO0FBQUE7QUFDQTtBQUFBO0FBQ0E7QUFDQTs7O0FBQ0E7QUFDQTtBQUdBOzs7QUFFQTtBQUNBO0FBQ0E7OztBQUVBO0FBQ0E7QUFDQTs7O0FBRUE7QUFDQTtBQUNBO0FBR0E7OztBQUVBO0FBQ0E7QUFDQTs7O0FBRUE7QUFDQTtBQUdBOzs7QUFFQTtBQUNBO0FBQ0E7Ozs7OztBQXRDQSIsInNvdXJjZVJvb3QiOiIifQ==");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Article = function () {
+    function Article(data) {
+        _classCallCheck(this, Article);
+
+        this.data = data;
+    }
+
+    _createClass(Article, [{
+        key: 'makeImage',
+        value: function makeImage() {
+            return '<a href="' + this.data.url + '" class="articleImageLink">\n                    <img src="' + this.data.urlToImage + '" class="articleImage">\n                </a>';
+        }
+    }, {
+        key: 'makeTitle',
+        value: function makeTitle() {
+            return '<a href="' + this.data.url + '" class="articleTitle">' + this.data.title + '</a>';
+        }
+    }, {
+        key: 'makeAuthor',
+        value: function makeAuthor() {
+            return '<span class="articleAuthor">' + (this.data.author ? 'Author: ' + this.data.author : '') + '</span>';
+        }
+    }, {
+        key: 'makePublishedTime',
+        value: function makePublishedTime() {
+            var time = new Date(this.data.publishedAt);
+            return '<span class="articleTime">\n                    Published at ' + (time.getHours() < 10 ? '0' + time.getHours() : time.getHours()) + ':' + (time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes()) + ' ' + (time.getDate() < 10 ? '0' + time.getDate() : time.getDate()) + '.' + (time.getMonth() + 1 < 10 ? '0' + time.getMonth() + 1 : time.getMonth() + 1) + '.' + time.getFullYear() + '\n                </span>';
+        }
+    }, {
+        key: 'makeDescription',
+        value: function makeDescription() {
+            return '<p class="articleDescription">' + this.data.description + '</p>';
+        }
+    }, {
+        key: 'makeContentContainer',
+        value: function makeContentContainer() {
+            return '<div class="articleContent">\n                    ' + this.makeTitle() + ' ' + this.makeAuthor() + ' ' + this.makePublishedTime() + ' ' + this.makeDescription() + '\n                </div>';
+        }
+    }, {
+        key: 'makeArticle',
+        value: function makeArticle() {
+            return '<li class="article">' + this.makeImage() + ' ' + this.makeContentContainer() + '</li>';
+        }
+    }]);
+
+    return Article;
+}();
+
+exports.default = Article;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = displayArticles;
+
+var _variables = __webpack_require__(0);
+
+var _Article = __webpack_require__(4);
+
+var _Article2 = _interopRequireDefault(_Article);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function displayArticles(articles) {
+    var container = document.getElementById('articles-container');
+    var a = 4;
+
+    if (container.children.length !== 0) {
+        container.removeChild(container.children[0]);
+        container.removeChild(container.children[1]);
+    }
+    var articlesString = "";
+
+    for (var i = 0; i < articles.content.length; i++) {
+        var article = new _Article2.default(articles.content[i]);
+        articlesString += article.makeArticle();
+    }
+    container.innerHTML = "<h2 class=\"articlesTitle\">Articles:</h2>\n                           <ul class=\"articleList\">" + articlesString + "</ul>";
+}
 
 /***/ })
 /******/ ]);
