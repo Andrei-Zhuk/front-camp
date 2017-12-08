@@ -1,8 +1,11 @@
 import displaySources from './modules/displaySources';
 import {API_KEY, SERVER, TYPE_SOURCES, sources} from './base/variables';
+import 'babel-polyfill';
 import 'whatwg-fetch';
 
+
 let babel_a = 4;
+alert(babel_a);
 
 fetch(`${SERVER}${TYPE_SOURCES}apiKey=${API_KEY}`)
     .then(response => response.json())
