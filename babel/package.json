@@ -2,20 +2,26 @@
   "name": "es2015-task",
   "version": "1.0.0",
   "scripts": {
-    "dev:server": "gulp watch"
+    "dev:server": "gulp watch",
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-dynamic-import-webpack": "^1.0.2",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.9.0",
-    "browser-sync": "^2.12.8",
-    "gulp": "^3.9.1",
-    "gulp-watch": "^4.3.5",
+    "css-loader": "^0.28.7",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "uglifyjs-webpack-plugin": "^1.1.2",
     "webpack": "^2",
+    "webpack-dev-server": "^2.9.7",
+    "webpack-merge": "^4.1.1",
     "whatwg-fetch": "^2.0.3"
   }
 }

@@ -1,11 +1,10 @@
 import {API_KEY, SERVER, TYPE_EVERYTHING, sources, articles} from "./../base/variables";
-import displayArticles from "./displayArticles";
+// import displayArticles from './displayArticles';
 import 'whatwg-fetch';
+
 
 export default function displaySources(sources) {
     let container = document.getElementById('sources-container');
-    let babel_a = 4;
-    console.log(babel_a);
 
     for (let category in sources) {
         let categoryContainer = document.createElement('div');
@@ -50,6 +49,10 @@ function handleSourceClick(e) {
         .then(response => response.json())
         .then(data => {
             articles.content = data.articles;
-            displayArticles(articles);
+            import(/* webpackChunkName: "displayArticles" */ './displayArticles').then(module => {
+              let displayArticles = module.default;
+              displayArticles(articles)
+            })
+            import(/* webpackChunkName: "articlesStyles" */ 'articlesStyles')
         })
 }
