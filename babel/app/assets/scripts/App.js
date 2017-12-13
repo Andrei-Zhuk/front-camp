@@ -3,6 +3,7 @@ import {API_KEY, SERVER, TYPE_SOURCES, sources} from './base/variables';
 import 'babel-polyfill';
 import 'whatwg-fetch';
 import 'appStyles';
+import './../../loader.json'
 
 fetch(`${SERVER}${TYPE_SOURCES}apiKey=${API_KEY}`)
     .then(response => response.json())
