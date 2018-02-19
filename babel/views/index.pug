@@ -3,5 +3,9 @@ html
     title= title
   body
     h1= message
-    a(href='/login') Login
-    a(href='/users') Users
+    if user
+      a(href='/logout') Log out
+      div
+      a(href='/users') Users
+    else
+      a(href='/login') Log in
