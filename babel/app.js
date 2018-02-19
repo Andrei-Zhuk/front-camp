@@ -3,11 +3,41 @@ const bodyParser = require('body-parser');
 const uniqid = require('uniqid');
 const winston = require('winston');
 const passport = require('passport');
-const Strategy = require('passport-http-bearer').Strategy;
+const Strategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 
+passport.use(new Strategy(
+    function(username, password, cb) {
+        User.findOne({email: username, password: password}, function (err, user) {
+          if (err) return cb(err)
+          if (!user) { return cb(null, false); }
+          return cb(null, user);
+        })
+    }
+));
 
+passport.serializeUser(function(user, cb) {
+    console.log('serialized');
+    cb(null, user.id);
+});
+
+passport.deserializeUser(function(id, cb) {
+    console.log('deserialized');
+    User.findOne({id: id}, function (err, user) {
+        if (err) { return cb(err); }
+        cb(null, user);
+    });
+});
+
+function checkLog (req, res, next) {
+    console.log(req.user);
+    if (req.user) {
+        next()
+    } else {
+        res.redirect('/login')
+    }
+}
 
 const app = express();
 const blogs = [];
@@ -35,26 +65,27 @@ const userSchema = mongoose.Schema({
 const Blogs = mongoose.model('Blogs', blogSchema)
 const User = mongoose.model('User', userSchema)
 
-passport.use(new Strategy(
-  function(token, done) {
-      console.log('yessss');
-    User.findOne({ token: token }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      return done(null, user, { scope: 'all' });
-    });
-  }
-));
-
-app.use(bodyParser.json());
 app.set('views', './views');
 app.set('view engine', 'pug');
 
-app.post('/login', passport.authenticate('bearer', { session: false }), (req, res) => {
-    console.log('wait');
+app.use(require('morgan')('combined'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/login', (req, res) => {
+    res.render('login');
 })
 
-app.get('/users', (req, res) => {
+app.post('/login', passport.authenticate('local'), function (req, res) {
+    console.log("post user", req.user);
+    res.redirect('/')
+})
+
+app.get('/users', checkLog, (req, res) => {
   logger.log({
       level: "info",
       url: req.url,
@@ -96,15 +127,10 @@ app.post('/blogs', (req, res) => {
       url: req.url,
       date: new Date()
   });
-  for (let i = 0; i < req.body.length; i++) {
-      let blog = new Blogs({title: req.body[i].title, _id: req.body[i].id});
-      blog.save((err, blog) => {
-          if (err) return next(err)
-      })
-  }
-  Blogs.find(function (err, blogs) {
-    if (err) return next(err)
-    res.json(blogs)
+  let blog = new Blogs({title: req.body.title, _id: req.body.id});
+  blog.save((err, blog) => {
+      if (err) return next(err)
+      res.json(blog);
   })
 })
 
@@ -136,7 +162,8 @@ app.delete('/blogs/:id', (req, res, next) => {
   })
 })
 
-app.get('/*', (req, res) => {
+app.get('/*', function (req, res) {
+  console.log("get user", req.user);
   logger.log({
       level: "info",
       url: req.url,
@@ -146,8 +173,8 @@ app.get('/*', (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-    err.stack = null;
-    res.status(500).send({ error: err.stack })
+    console.error(err);
+    res.status(500).send(err)
 })
 
 app.listen(3000, () => {
