@@ -1,4 +1,5 @@
 import React from 'react';
+import uniqid from 'uniqid';
 
 export class AddPost extends React.Component {
     constructor(props) {
@@ -23,8 +24,9 @@ export class AddPost extends React.Component {
     savePost(e) {
         e.preventDefault();
         const {handleSavePost} = this.props;
-        const {title, content, author} = this.state
-        handleSavePost({title, content, author});
+        const {title, content, author} = this.state;
+        let id = uniqid();
+        handleSavePost({title, content, author, id});
         this.setState({
             title: "",
             content: "",
@@ -53,7 +55,7 @@ export class AddPost extends React.Component {
                         <input placeholder="Type a content" name="content" value={this.state.content} onChange={this.handleInputChange}/>
                         <input placeholder="Type an author" name="author" value={this.state.author} onChange={this.handleInputChange}/>
                         <button onClick={this.savePost} >Save</button>
-                        <button onClick={this.cancel} >Cansel</button>
+                        <button onClick={this.cancelPost} >Cansel</button>
                     </form>
                 </div>
             </div>

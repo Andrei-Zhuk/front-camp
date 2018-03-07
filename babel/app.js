@@ -5,6 +5,9 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const connect = require('connect-ensure-login');
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import Main from 'Main';
 // mongoose.connect('mongodb://localhost/test');
 
 // passport.use(new Strategy((username, password, cb) => {
@@ -149,7 +152,21 @@ app.use(bodyParser.json());
 // })
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/app/dist/index.html');
+    const appString = renderToString(<Main {...initialState} />);
+    let body = `<!DOCTYPE html>
+                <html>
+                  <head>
+                    <title>Posts</title>
+                  </head>
+
+                  <body>
+                    <div id="app">${appString}</div>
+                  </body>
+
+                  <script src="app.bundle.js"></script>
+                </html>`
+
+    res.send(body);
 });
 
 app.get('/App.js', (req, res) => {
