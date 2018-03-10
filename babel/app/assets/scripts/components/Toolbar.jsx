@@ -5,7 +5,7 @@ export const Toolbar = (props) => {
     return (
         <div>
             <input type="text" value={searchText} onChange={handleChangeSearchText} placeholder="Type an author to filter posts"/>
-            <button onClick={handleAddPost} >Add</button>
+            <button onClick={handleAddPost} >Add Post</button>
         </div>
     )
 }

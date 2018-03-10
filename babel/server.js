@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const connect = require('connect-ensure-login');
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import Main from 'Main';
+import {Main} from 'Main';
 // mongoose.connect('mongodb://localhost/test');
 
 // passport.use(new Strategy((username, password, cb) => {
@@ -152,7 +152,8 @@ app.use(bodyParser.json());
 // })
 
 app.get('/', (req, res) => {
-    const appString = renderToString(<Main {...initialState} />);
+  console.log(Main);
+    const appString = renderToString(<Main/>);
     let body = `<!DOCTYPE html>
                 <html>
                   <head>
@@ -169,13 +170,11 @@ app.get('/', (req, res) => {
     res.send(body);
 });
 
-app.get('/App.js', (req, res) => {
-  res.sendFile(__dirname + '/app/dist/App.js');
+app.get('/app.bundle.js', (req, res) => {
+  res.sendFile(__dirname + '/app.bundle.js');
 });
 
 app.use((err, req, res, next) => {
-    err.stack = null;
-    console.error(err);
     res.status(500).send({err: err.stack})
 })
 

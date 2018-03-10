@@ -46,7 +46,6 @@ export class AddPost extends React.Component {
     }
 
     render() {
-        const {handleSavePost, handleCancelPost} = this.props;
         return (
             <div>
                 <div>
