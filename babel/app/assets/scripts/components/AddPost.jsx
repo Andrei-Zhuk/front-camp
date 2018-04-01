@@ -23,10 +23,10 @@ export class AddPost extends React.Component {
     }
     savePost(e) {
         e.preventDefault();
-        const {handleSavePost} = this.props;
+        const {savePost} = this.props;
         const {title, content, author} = this.state;
         let id = uniqid();
-        handleSavePost({title, content, author, id});
+        savePost({title, content, author, id});
         this.setState({
             title: "",
             content: "",
@@ -36,8 +36,6 @@ export class AddPost extends React.Component {
 
     cancelPost(e) {
         e.preventDefault();
-        const {handleCancelPost} = this.props;
-        handleCancelPost();
         this.setState({
             title: "",
             content: "",

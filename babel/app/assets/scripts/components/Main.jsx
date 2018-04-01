@@ -1,65 +1,46 @@
 import React from 'react';
+import {connect} from "react-redux";
+import {Route, Switch, Redirect, Link, withRouter} from 'react-router-dom';
+
 import {Toolbar} from 'Toolbar';
 import {AddPost} from 'AddPost';
 import {PostList} from 'PostList';
+import {savePost, changeSearchText, removePost} from './../actions/actions.jsx';
 
-export class Main extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isAddingPost: false,
-            posts: [],
-            searchText: ""
-        };
-        this.handleSavePost = this.handleSavePost.bind(this);
-        this.handleCancelPost = this.handleCancelPost.bind(this);
-        this.handleAddPost = this.handleAddPost.bind(this);
-        this.handleDeletePost = this.handleDeletePost.bind(this);
-        this.handleChangeSearchText = this.handleChangeSearchText.bind(this);
-    }
+const Main = (props) => {
+    let {savePost, changeSearchText, searchText, posts} = props;
+    let filteredPosts = posts.filter((post) => {
+        return post.author.indexOf(searchText) !== -1;
+    })
+    return (
+        <div>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/post">Add new post</Link></li>
+            </ul>
 
-    handleAddPost() {
-        this.setState({
-            isAddingPost: true
-        })
-    }
-
-    handleSavePost(post) {
-        this.setState({
-            posts: [post, ...this.state.posts],
-            isAddingPost: false
-        })
-    }
-
-    handleCancelPost() {
-        this.setState({
-            isAddingPost: false
-        })
-    }
-
-    handleDeletePost(id) {
-        this.setState({
-            posts: this.state.posts.filter((post) => post.id !== id)
-        })
-    }
-
-    handleChangeSearchText(e) {
-        this.setState({
-            searchText: e.target.value
-        })
-    }
-
-    render() {
-        let that = this
-        let filteredPosts = this.state.posts.filter((post) => {
-            return post.author.indexOf(that.state.searchText) !== -1
-        })
-        return (
-            <div>
-                <Toolbar handleAddPost={this.handleAddPost} searchText={this.state.searchText} handleChangeSearchText={this.handleChangeSearchText}/>
-                {this.state.isAddingPost ? <AddPost handleSavePost={this.handleSavePost} handleCancelPost={this.handleCancelPost} /> : null}
-                <PostList posts={filteredPosts} handleDeletePost={this.handleDeletePost}/>
-            </div>
-        )
-    }
+            <Switch>
+                <Route exact path="/" render={props => <Toolbar changeSearchText={changeSearchText} searchText={searchText} />} />
+                <Route path="/post" render={props => <AddPost savePost={savePost} />} />
+                <Redirect to="/" />
+            </Switch>
+            <PostList posts={filteredPosts} />
+        </div>
+    )
 }
+
+const mapStateToProps = state => ({
+    posts: state.posts,
+    searchText: state.searchText
+});
+
+const mapDispatchToProps = dispatch => ({
+    savePost(text) {
+        dispatch(savePost(text))
+    },
+    changeSearchText(text) {
+        dispatch(changeSearchText(text))
+    }
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

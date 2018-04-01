@@ -7,7 +7,14 @@ const mongoose = require('mongoose');
 const connect = require('connect-ensure-login');
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import {Main} from 'Main';
+import Main from 'Main';
+
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import reduxThunk from 'redux-thunk';
+import {StaticRouter} from 'react-router-dom';
+
+import postReducers from 'Reducers';
 // mongoose.connect('mongodb://localhost/test');
 
 // passport.use(new Strategy((username, password, cb) => {
@@ -55,8 +62,8 @@ const app = express();
 // const Blogs = mongoose.model('Blogs', blogSchema)
 // const User = mongoose.model('User', userSchema)
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 // app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 // app.use(passport.initialize());
@@ -150,15 +157,40 @@ app.use(bodyParser.json());
 //       })
 //   })
 // })
+// app.use(express.static('./'));
 
-app.get('/', (req, res) => {
-  console.log(Main);
-    const appString = renderToString(<Main/>);
-    let body = `<!DOCTYPE html>
+app.get('/app.bundle.js', (req, res) => {
+    res.sendFile(__dirname + '/app.bundle.js')
+})
+
+app.get('/*', (req, res) => {
+    let store = createStore(postReducers)
+
+    const context = {};
+    const app = (
+        <Provider store={store}>
+            <StaticRouter location={req.url} context={context}>
+                <Main/>
+            </StaticRouter>
+        </Provider>
+    )
+    const appString = renderToString(app);
+    if (context.url) {
+        return res.redirect(context.url);
+    }
+
+    const preloadedState = store.getState();
+
+    let body = `<!doctype html>
                 <html>
                   <head>
                     <title>Posts</title>
                   </head>
+                  <script>
+                    // WARNING: See the following for security issues around embedding JSON in HTML:
+                    // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
+                    window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+                  </script>
 
                   <body>
                     <div id="app">${appString}</div>

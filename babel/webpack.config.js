@@ -28,7 +28,8 @@ module.exports = [
             PostList$: __dirname + '/app/assets/scripts/components/PostList.jsx',
             Post$: __dirname + '/app/assets/scripts/components/Post.jsx',
             appStyles$: __dirname + '/app/assets/styles/styles.scss',
-            articlesStyles$: __dirname + '/app/assets/styles/modules/_articles.scss'
+            articlesStyles$: __dirname + '/app/assets/styles/modules/_articles.scss',
+            Reducers$: __dirname + '/app/assets/scripts/reducers/reducers.jsx'
         }
     },
     module: {
@@ -57,7 +58,8 @@ module.exports = [
               PostList$: __dirname + '/app/assets/scripts/components/PostList.jsx',
               Post$: __dirname + '/app/assets/scripts/components/Post.jsx',
               appStyles$: __dirname + '/app/assets/styles/styles.scss',
-              articlesStyles$: __dirname + '/app/assets/styles/modules/_articles.scss'
+              articlesStyles$: __dirname + '/app/assets/styles/modules/_articles.scss',
+              Reducers$: __dirname + '/app/assets/scripts/reducers/reducers.jsx'
           }
       },
     module: {

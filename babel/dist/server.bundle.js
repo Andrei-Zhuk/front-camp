@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -74,6 +74,18 @@ module.exports = require("react");
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router-dom");
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82,159 +94,242 @@ module.exports = require("react");
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.Main = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Toolbar = __webpack_require__(13);
+var _reactRedux = __webpack_require__(2);
 
-var _AddPost = __webpack_require__(10);
+var _reactRouterDom = __webpack_require__(1);
 
-var _PostList = __webpack_require__(12);
+var _Toolbar = __webpack_require__(19);
+
+var _AddPost = __webpack_require__(16);
+
+var _PostList = __webpack_require__(18);
+
+var _actions = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+var Main = function Main(props) {
+    var savePost = props.savePost,
+        changeSearchText = props.changeSearchText,
+        searchText = props.searchText,
+        posts = props.posts;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Main = exports.Main = function (_React$Component) {
-    _inherits(Main, _React$Component);
-
-    function Main(props) {
-        _classCallCheck(this, Main);
-
-        var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
-
-        _this.state = {
-            isAddingPost: false,
-            posts: [],
-            searchText: ""
-        };
-        _this.handleSavePost = _this.handleSavePost.bind(_this);
-        _this.handleCancelPost = _this.handleCancelPost.bind(_this);
-        _this.handleAddPost = _this.handleAddPost.bind(_this);
-        _this.handleDeletePost = _this.handleDeletePost.bind(_this);
-        _this.handleChangeSearchText = _this.handleChangeSearchText.bind(_this);
-        return _this;
-    }
-
-    _createClass(Main, [{
-        key: 'handleAddPost',
-        value: function handleAddPost() {
-            this.setState({
-                isAddingPost: true
-            });
-        }
-    }, {
-        key: 'handleSavePost',
-        value: function handleSavePost(post) {
-            this.setState({
-                posts: [post].concat(_toConsumableArray(this.state.posts)),
-                isAddingPost: false
-            });
-        }
-    }, {
-        key: 'handleCancelPost',
-        value: function handleCancelPost() {
-            this.setState({
-                isAddingPost: false
-            });
-        }
-    }, {
-        key: 'handleDeletePost',
-        value: function handleDeletePost(id) {
-            this.setState({
-                posts: this.state.posts.filter(function (post) {
-                    return post.id !== id;
-                })
-            });
-        }
-    }, {
-        key: 'handleChangeSearchText',
-        value: function handleChangeSearchText(e) {
-            this.setState({
-                searchText: e.target.value
-            });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var that = this;
-            var filteredPosts = this.state.posts.filter(function (post) {
-                return post.author.indexOf(that.state.searchText) !== -1;
-            });
-            return _react2.default.createElement(
-                'div',
+    var filteredPosts = posts.filter(function (post) {
+        return post.author.indexOf(searchText) !== -1;
+    });
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'ul',
+            null,
+            _react2.default.createElement(
+                'li',
                 null,
-                _react2.default.createElement(_Toolbar.Toolbar, { handleAddPost: this.handleAddPost, searchText: this.state.searchText, handleChangeSearchText: this.handleChangeSearchText }),
-                this.state.isAddingPost ? _react2.default.createElement(_AddPost.AddPost, { handleSavePost: this.handleSavePost, handleCancelPost: this.handleCancelPost }) : null,
-                _react2.default.createElement(_PostList.PostList, { posts: filteredPosts, handleDeletePost: this.handleDeletePost })
-            );
+                _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/' },
+                    'Home'
+                )
+            ),
+            _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/post' },
+                    'Add new post'
+                )
+            )
+        ),
+        _react2.default.createElement(
+            _reactRouterDom.Switch,
+            null,
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render(props) {
+                    return _react2.default.createElement(_Toolbar.Toolbar, { changeSearchText: changeSearchText, searchText: searchText });
+                } }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/post', render: function render(props) {
+                    return _react2.default.createElement(_AddPost.AddPost, { savePost: savePost });
+                } }),
+            _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' })
+        ),
+        _react2.default.createElement(_PostList.PostList, { posts: filteredPosts })
+    );
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+    return {
+        posts: state.posts,
+        searchText: state.searchText
+    };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+        savePost: function savePost(text) {
+            dispatch((0, _actions.savePost)(text));
+        },
+        changeSearchText: function changeSearchText(text) {
+            dispatch((0, _actions.changeSearchText)(text));
         }
-    }]);
+    };
+};
 
-    return Main;
-}(_react2.default.Component);
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = require("body-parser");
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = require("connect-ensure-login");
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main));
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = require("express");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var initState = {
+    posts: [{
+        title: 'first',
+        content: 'first',
+        author: 'first',
+        id: 'first'
+    }],
+    searchText: ""
+};
+
+var postReducers = function postReducers() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
+    var action = arguments[1];
+
+    switch (action.type) {
+        case 'SAVE_POST':
+            return _extends({}, state, {
+                posts: [].concat(_toConsumableArray(state.posts), [action.post])
+            });
+            break;
+        case 'REMOVE_POST':
+            console.log('REMOVE_POST');
+            return _extends({}, state, {
+                posts: state.posts.filter(function (post) {
+                    return post.id !== action.id;
+                })
+            });
+            break;
+        case 'CHANGE_SEARCH_TEXT':
+            return _extends({}, state, {
+                searchText: action.text
+            });
+            break;
+        default:
+            return state;
+    }
+};
+
+exports.default = postReducers;
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = require("mongoose");
+module.exports = require("body-parser");
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = require("passport");
+module.exports = require("connect-ensure-login");
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = require("passport-local");
+module.exports = require("express");
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("react-dom/server");
+module.exports = require("mongoose");
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = require("winston");
+module.exports = require("passport");
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports) {
+
+module.exports = require("passport-local");
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-dom/server");
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = require("redux-thunk");
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = require("winston");
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var savePost = exports.savePost = function savePost(post) {
+    return {
+        type: 'SAVE_POST',
+        post: post
+    };
+};
+
+var removePost = exports.removePost = function removePost(id) {
+    return {
+        type: 'REMOVE_POST',
+        id: id
+    };
+};
+
+var changeSearchText = exports.changeSearchText = function changeSearchText(text) {
+    return {
+        type: 'CHANGE_SEARCH_TEXT',
+        text: text
+    };
+};
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -251,7 +346,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _uniqid = __webpack_require__(15);
+var _uniqid = __webpack_require__(21);
 
 var _uniqid2 = _interopRequireDefault(_uniqid);
 
@@ -295,14 +390,14 @@ var AddPost = exports.AddPost = function (_React$Component) {
         key: 'savePost',
         value: function savePost(e) {
             e.preventDefault();
-            var handleSavePost = this.props.handleSavePost;
+            var savePost = this.props.savePost;
             var _state = this.state,
                 title = _state.title,
                 content = _state.content,
                 author = _state.author;
 
             var id = (0, _uniqid2.default)();
-            handleSavePost({ title: title, content: content, author: author, id: id });
+            savePost({ title: title, content: content, author: author, id: id });
             this.setState({
                 title: "",
                 content: "",
@@ -313,9 +408,6 @@ var AddPost = exports.AddPost = function (_React$Component) {
         key: 'cancelPost',
         value: function cancelPost(e) {
             e.preventDefault();
-            var handleCancelPost = this.props.handleCancelPost;
-
-            handleCancelPost();
             this.setState({
                 title: "",
                 content: "",
@@ -357,7 +449,7 @@ var AddPost = exports.AddPost = function (_React$Component) {
 }(_react2.default.Component);
 
 /***/ }),
-/* 11 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -366,20 +458,23 @@ var AddPost = exports.AddPost = function (_React$Component) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.Post = undefined;
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(2);
+
+var _actions = __webpack_require__(15);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Post = exports.Post = function Post(props) {
+var Post = function Post(props) {
     var id = props.id,
         title = props.title,
         author = props.author,
         content = props.content,
-        handleDeletePost = props.handleDeletePost;
+        removePost = props.removePost;
 
     return _react2.default.createElement(
         'div',
@@ -405,15 +500,26 @@ var Post = exports.Post = function Post(props) {
         _react2.default.createElement(
             'button',
             { onClick: function onClick() {
-                    handleDeletePost(id);
+                    removePost(id);
                 } },
             'Delete'
         )
     );
 };
 
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+        removePost: function removePost(id) {
+            console.log('dispatch');
+            dispatch((0, _actions.removePost)(id));
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Post);
+
 /***/ }),
-/* 12 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -430,22 +536,23 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Post = __webpack_require__(11);
+var _Post = __webpack_require__(17);
+
+var _Post2 = _interopRequireDefault(_Post);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var PostList = exports.PostList = function PostList(props) {
-    var handleDeletePost = props.handleDeletePost,
-        posts = props.posts;
+    var posts = props.posts;
 
 
     return posts.map(function (post) {
-        return _react2.default.createElement(_Post.Post, _extends({ key: post.id }, post, { handleDeletePost: handleDeletePost }));
+        return _react2.default.createElement(_Post2.default, _extends({ key: post.id }, post));
     });
 };
 
 /***/ }),
-/* 13 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -460,49 +567,63 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(1);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Toolbar = exports.Toolbar = function Toolbar(props) {
-    var handleAddPost = props.handleAddPost,
-        handleChangeSearchText = props.handleChangeSearchText,
+    var changeSearchText = props.changeSearchText,
         searchText = props.searchText;
 
     return _react2.default.createElement(
-        "div",
+        'div',
         null,
-        _react2.default.createElement("input", { type: "text", value: searchText, onChange: handleChangeSearchText, placeholder: "Type an author to filter posts" }),
-        _react2.default.createElement(
-            "button",
-            { onClick: handleAddPost },
-            "Add Post"
-        )
+        _react2.default.createElement('input', { type: 'text', value: searchText, onChange: function onChange(e) {
+                changeSearchText(e.target.value);
+            }, placeholder: 'Type an author to filter posts' })
     );
 };
 
 /***/ }),
-/* 14 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(__dirname) {
+
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(8);
+var _server = __webpack_require__(11);
 
-var _Main = __webpack_require__(1);
+var _Main = __webpack_require__(3);
+
+var _Main2 = _interopRequireDefault(_Main);
+
+var _redux = __webpack_require__(12);
+
+var _reactRedux = __webpack_require__(2);
+
+var _reduxThunk = __webpack_require__(13);
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+var _reactRouterDom = __webpack_require__(1);
+
+var _Reducers = __webpack_require__(4);
+
+var _Reducers2 = _interopRequireDefault(_Reducers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var express = __webpack_require__(4);
-var bodyParser = __webpack_require__(2);
-var winston = __webpack_require__(9);
-var passport = __webpack_require__(6);
-var Strategy = __webpack_require__(7).Strategy;
-var mongoose = __webpack_require__(5);
-var connect = __webpack_require__(3);
+var express = __webpack_require__(7);
+var bodyParser = __webpack_require__(5);
+var winston = __webpack_require__(14);
+var passport = __webpack_require__(9);
+var Strategy = __webpack_require__(10).Strategy;
+var mongoose = __webpack_require__(8);
+var connect = __webpack_require__(6);
 
 // mongoose.connect('mongodb://localhost/test');
 
@@ -551,8 +672,8 @@ var app = express();
 // const Blogs = mongoose.model('Blogs', blogSchema)
 // const User = mongoose.model('User', userSchema)
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 // app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 // app.use(passport.initialize());
@@ -646,30 +767,51 @@ app.use(bodyParser.json());
 //       })
 //   })
 // })
+// app.use(express.static('./'));
 
-app.get('/', function (req, res) {
-  console.log(_Main.Main);
-  var appString = (0, _server.renderToString)(_react2.default.createElement(_Main.Main, null));
-  var body = '<!DOCTYPE html>\n                <html>\n                  <head>\n                    <title>Posts</title>\n                  </head>\n\n                  <body>\n                    <div id="app">' + appString + '</div>\n                  </body>\n\n                  <script src="app.bundle.js"></script>\n                </html>';
+app.get('/app.bundle.js', function (req, res) {
+    res.sendFile(__dirname + '/app.bundle.js');
+});
 
-  res.send(body);
+app.get('/*', function (req, res) {
+    var store = (0, _redux.createStore)(_Reducers2.default);
+
+    var context = {};
+    var app = _react2.default.createElement(
+        _reactRedux.Provider,
+        { store: store },
+        _react2.default.createElement(
+            _reactRouterDom.StaticRouter,
+            { location: req.url, context: context },
+            _react2.default.createElement(_Main2.default, null)
+        )
+    );
+    var appString = (0, _server.renderToString)(app);
+    if (context.url) {
+        return res.redirect(context.url);
+    }
+
+    var preloadedState = store.getState();
+
+    var body = '<!doctype html>\n                <html>\n                  <head>\n                    <title>Posts</title>\n                  </head>\n                  <script>\n                    // WARNING: See the following for security issues around embedding JSON in HTML:\n                    // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations\n                    window.PRELOADED_STATE = ' + JSON.stringify(preloadedState).replace(/</g, '\\u003c') + '\n                  </script>\n\n                  <body>\n                    <div id="app">' + appString + '</div>\n                  </body>\n\n                  <script src="app.bundle.js"></script>\n                </html>';
+
+    res.send(body);
 });
 
 app.get('/app.bundle.js', function (req, res) {
-  res.sendFile(__dirname + '/app.bundle.js');
+    res.sendFile(__dirname + '/app.bundle.js');
 });
 
 app.use(function (err, req, res, next) {
-  res.status(500).send({ err: err.stack });
+    res.status(500).send({ err: err.stack });
 });
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+    console.log('Example app listening on port 3000!');
 });
-/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
-/* 15 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = require("uniqid");
