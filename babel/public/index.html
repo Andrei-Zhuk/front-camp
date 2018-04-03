@@ -1,0 +1,48 @@
+<!doctype html>
+<html ng-app="todoApp">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div ng-controller="todoController">
+            <div>
+                <span>Type a number of days to filter</span><input type="number" ng-model="daysOld" ng-change="filterByDays()">
+            </div>
+            <div>
+                <p>Sort by</p>
+                <button type="button" ng-click="sortBy('name')">Name</button>
+                <button type="button" name="button" ng-click="sortBy('date')">Date</button>
+            </div>
+            <h2>Tasks to do</h2>
+            <ul ng-repeat="task in tasks | filter:filterByDaysUncompletedTodos | orderBy:sortOrder:true">
+                <li>
+                    <input type="checkbox" ng-model="task.checked" />
+                    <span ng-click="turnOnEditMode(task.name)" ng-if="!task.editMode">{{task.name}}</span>
+                    <form ng-if="task.editMode">
+                        <input type="text" ng-model="task.name" required text class="newTodoInput" />
+                        <input type="submit" value="edit todo" ng-click="turnOffEditMode(task.name)"/>
+                    </form>
+                    <p>{{task.date.toString()}}</p>
+                </li>
+            </ul>
+            <h2>Done tasks</h2>
+            <ul ng-repeat="task in tasks | filter:filterByDaysCompletedTodos | orderBy:sortOrder:true">
+                <li>
+                    <input type="checkbox" ng-model="task.checked" />
+                    <span ng-click="turnOnEditMode(task.name)" ng-if="!task.editMode">{{task.name}}</span>
+                    <form ng-if="task.editMode">
+                        <input type="text" ng-model="task.name" required text class="newTodoInput" />
+                        <input type="submit" value="edit todo" ng-click="turnOffEditMode(task.name)"/>
+                    </form>
+                    <p>{{task.date.toString()}}</p>
+                </li>
+            </ul>
+            <form>
+                <input type="text" ng-model="newTodo" required text class="newTodoInput" />
+                <input type="submit" value="add todo" ng-click="addTodo()"/>
+            </form>
+        </div>
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>

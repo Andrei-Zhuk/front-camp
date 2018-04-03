@@ -2,47 +2,9 @@
   "name": "es2015-task",
   "version": "1.0.0",
   "scripts": {
-    "dev:server": "gulp watch",
-    "start": "webpack --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-dynamic-import-webpack": "^1.0.2",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.7",
-    "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.19.0",
-    "uglifyjs-webpack-plugin": "^1.1.2",
-    "webpack": "^2",
-    "webpack-dev-server": "^2.9.7",
-    "webpack-merge": "^4.1.1",
-    "webpack-node-externals": "^1.6.0",
-    "whatwg-fetch": "^2.0.3"
+    "start": "node server.js"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "connect-ensure-login": "^0.1.1",
-    "express": "^4.16.2",
-    "express-session": "^1.15.6",
-    "mongoose": "^5.0.4",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "pug": "^2.0.0-rc.4",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0",
-    "uniqid": "^4.1.1",
-    "winston": "^3.0.0-rc1"
+    "express": "^4.16.2"
   }
 }
