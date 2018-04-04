@@ -52,8 +52,4 @@ app.controller("todoController", ['$scope', function ($scope) {
             $scope.addingArticle = false;
         }
     }
-
-    $scope.removeTodo = (index) => {
-        $scope.tasks.splice(index, 1)
-    }
 }])
