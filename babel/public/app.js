@@ -12,61 +12,44 @@ app.directive('text', function() {
 });
 
 app.controller("todoController", ['$scope', function ($scope) {
-    $scope.tasks = [
+    $scope.articles = [
         {
-            name: 'eat mooooooooooooooooooooooooooooooooore',
-            date: new Date(),
-            checked: false,
+            title: 'eat mooooooooooooooooooooooooooooooooore',
+            content: 'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd',
             editMode: false
         }
     ]
-    $scope.newTodo = "";
-    $scope.daysOld = null;
-    $scope.sortOrder = null;
+    $scope.newArticleTitle = "";
+    $scope.newArticleContent = "";
+    $scope.addingArticle = false;
 
-    $scope.sortBy = (type) => {
-        $scope.sortOrder = type;
+    $scope.openCloseAddingArticle = () => {
+        $scope.addingArticle = !$scope.addingArticle;
     }
 
-    $scope.turnOnEditMode = (name) => {
-        let index = $scope.tasks.findIndex((task) => task.name === name)
-        $scope.tasks[index].editMode = true;
+    $scope.turnOnEditMode = (title) => {
+        let index = $scope.articles.findIndex((article) => article.title === title)
+        $scope.articles[index].editMode = true;
     }
 
-    $scope.turnOffEditMode = (name) => {
-        let index = $scope.tasks.findIndex((task) => task.name === name)
-        $scope.tasks[index].editMode = false;
+    $scope.turnOffEditMode = (title) => {
+        let index = $scope.articles.findIndex((article) => article.title === title)
+        $scope.articles[index].editMode = false;
     }
 
-    $scope.filterByDaysUncompletedTodos = (val, i, arr) => {
-        if ($scope.daysOld === null) {
-            return val.checked === false
-        } else {
-            return val.checked === false && Math.floor((+new Date() - +val.date)/86400000) === $scope.daysOld;
-        }
-    }
-
-    $scope.filterByDaysCompletedTodos = (val, i, arr) => {
-        if ($scope.daysOld === null) {
-            return val.checked === true
-        } else {
-            return val.checked === true && Math.floor((+new Date() - +val.date)/86400000) === $scope.daysOld;
-        }
-    }
-
-    $scope.addTodo = () => {
-        let name = $scope.newTodo;
-        if (!name) {
+    $scope.saveArticle = (title, content) => {
+        if (!title || !content) {
             return;
         }
-        if (!$scope.tasks.some((task) => task.name === name)) {
-            $scope.tasks.push({
-                name,
-                date: new Date(),
-                checked: false,
+        if (!$scope.articles.some((article) => article.title === title)) {
+            $scope.articles.push({
+                title,
+                content,
                 editMode: false
             });
-            $scope.newTodo = "";
+            // $scope.newArticleTitle = "";
+            // $scope.newArticleContent = "";
+            $scope.addingArticle = false;
         }
     }
 
