@@ -1,10 +1,10 @@
 const app = angular.module("todoApp", [])
 
-app.directive('text', function() {
+app.directive('text', () => {
     return {
         require: 'ngModel',
-        link: function(scope, elm, attrs, ctrl) {
-            ctrl.$validators.text = function(modelValue, viewValue) {
+        link: (scope, elm, attrs, ctrl) => {
+            ctrl.$validators.text = (modelValue, viewValue) => {
                 return viewValue.length >= 20;
             };
         }
@@ -47,13 +47,7 @@ app.controller("todoController", ['$scope', function ($scope) {
                 content,
                 editMode: false
             });
-            // $scope.newArticleTitle = "";
-            // $scope.newArticleContent = "";
             $scope.addingArticle = false;
         }
-    }
-
-    $scope.removeTodo = (index) => {
-        $scope.tasks.splice(index, 1)
     }
 }])
